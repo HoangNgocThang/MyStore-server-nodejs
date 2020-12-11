@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="6b0e3534-ca66-4543-904d-7e39bbff94fb" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ProjectId" id="1lUg79cQj96C3FGXXF4UE6EzuBb" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="javascript.nodejs.core.library.configured.version" value="12.16.1" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_interpreter_path" value="node" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="restartRequiresConfirmation" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\server\f8\src\public\images" />
+      <recent name="F:\server\f8\src" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value=" " />
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6b0e3534-ca66-4543-904d-7e39bbff94fb" name="Default Changelist" comment="" />
+      <created>1607656913505</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1607656913505</updated>
+      <workItem from="1607656915499" duration="5159000" />
+      <workItem from="1607666731428" duration="13702000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1325" height="165" key="GridCell.Tab.0.bottom" timestamp="1607682194436">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1325" height="165" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607682194436" />
+    <state width="1325" height="165" key="GridCell.Tab.0.center" timestamp="1607682194436">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1325" height="165" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607682194436" />
+    <state width="1325" height="165" key="GridCell.Tab.0.left" timestamp="1607682194435">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1325" height="165" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607682194435" />
+    <state width="1325" height="165" key="GridCell.Tab.0.right" timestamp="1607682194436">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1325" height="165" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607682194436" />
+    <state x="497" y="208" width="672" height="677" key="run.anything.popup" timestamp="1607680209641">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="497" y="208" width="672" height="677" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1607680209641" />
+  </component>
+</project>
