@@ -14,7 +14,6 @@ class NewsController {
 
     // [GET] /news/:slug
     show(req, res) {
-        console.log('vao');
         res.send("New Detail");
     }
 }
