@@ -5,8 +5,17 @@
     <link rel='stylesheet' href='./src/public/stylesheets/style.css'/>
 </head>
 <body>
-<p>Welcome to <%= title %></p>
 
+<div>
+    <h1>Express js !!!</h1>
+    <p>Welcome to <%= title %></p>
+
+    <% let users = ['geddy', 'neil', 'alex']; %>
+    <% users.forEach(function(user){ %>
+        <li><%= user %></li>
+    <% }); %>
+
+</div>
 
 </body>
 </html>
