@@ -1,13 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6b0e3534-ca66-4543-904d-7e39bbff94fb" name="Default Changelist" comment="" />
+    <list default="true" id="6b0e3534-ca66-4543-904d-7e39bbff94fb" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/app/db/mongo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.yarn-integrity" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.yarn-integrity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1lUg79cQj96C3FGXXF4UE6EzuBb" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -49,7 +66,8 @@
       <option name="presentableId" value="Default" />
       <updated>1607656913505</updated>
       <workItem from="1607656915499" duration="5159000" />
-      <workItem from="1607666731428" duration="13702000" />
+      <workItem from="1607666731428" duration="14047000" />
+      <workItem from="1607911283606" duration="1214000" />
     </task>
     <servers />
   </component>
@@ -57,22 +75,26 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1325" height="165" key="GridCell.Tab.0.bottom" timestamp="1607682194436">
+    <state x="705" y="277" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1607912143857">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1325" height="165" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607682194436" />
-    <state width="1325" height="165" key="GridCell.Tab.0.center" timestamp="1607682194436">
+    <state x="705" y="277" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1607912143857" />
+    <state width="1325" height="269" key="GridCell.Tab.0.bottom" timestamp="1607912573688">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1325" height="165" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607682194436" />
-    <state width="1325" height="165" key="GridCell.Tab.0.left" timestamp="1607682194435">
+    <state width="1325" height="269" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607912573688" />
+    <state width="1325" height="269" key="GridCell.Tab.0.center" timestamp="1607912573688">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1325" height="165" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607682194435" />
-    <state width="1325" height="165" key="GridCell.Tab.0.right" timestamp="1607682194436">
+    <state width="1325" height="269" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607912573688" />
+    <state width="1325" height="269" key="GridCell.Tab.0.left" timestamp="1607912573688">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1325" height="165" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607682194436" />
+    <state width="1325" height="269" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607912573688" />
+    <state width="1325" height="269" key="GridCell.Tab.0.right" timestamp="1607912573688">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1325" height="269" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607912573688" />
     <state x="497" y="208" width="672" height="677" key="run.anything.popup" timestamp="1607680209641">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
