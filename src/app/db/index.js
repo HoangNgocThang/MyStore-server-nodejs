@@ -1,3 +1,31 @@
+class Database {
+    mysql = require('mysql');
+    connection;
+
+    connect() {
+        try {
+            this.connection = this.mysql.createConnection({
+                host: 'localhost',
+                user: 'root',
+                password: '',
+                database: 'news_addiction'
+            });
+            console.log("Kết nối database thành công !!!");
+        } catch (e) {
+            console.log('Lỗi kết nối database:', e);
+        }
+    }
+
+    disConect() {
+        this.connection.end(() => {
+            console.log("Hủy kết nối database !!!");
+        });
+    }
+
+}
+
+module.exports = new Database();
+
 // var mysql = require('mysql');
 // var connection;
 //
@@ -30,34 +58,3 @@
 //     disConnectDb
 // };
 
-class Database {
-    mysql = require('mysql');
-    connection;
-
-    constructor() {
-
-    }
-
-    connect() {
-        try {
-            this.connection = this.mysql.createConnection({
-                host: 'localhost',
-                user: 'root',
-                password: '',
-                database: 'news_addiction'
-            });
-            console.log("Kết nối database thành công !!!");
-        } catch (e) {
-            console.log('Lỗi kết nối database:', e);
-        }
-    }
-
-    disConect() {
-        this.connection.end(() => {
-            console.log("Hủy kết nối database !!!");
-        });
-    }
-
-}
-
-module.exports = new Database();

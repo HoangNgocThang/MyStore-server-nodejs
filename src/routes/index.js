@@ -2,9 +2,9 @@ var express = require('express');
 var createError = require('http-errors');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
-const newsRouter = require('./news');
-const userRouter = require('./users');
+const productRouter = require('./products');
+const categoryRouter = require('./category');
+const cartRouter = require('./cart');
 
 function route(app) {
 
@@ -13,9 +13,9 @@ function route(app) {
         res.render('index', {title: 'THANG'});
     });
 
-    app.use('/news', newsRouter);
-
-    app.use('/users', userRouter);
+    app.use('/products', productRouter);
+    app.use('/category', categoryRouter);
+    app.use('/cart', cartRouter);
 
     app.use(logger('dev'));
     app.use(express.json());

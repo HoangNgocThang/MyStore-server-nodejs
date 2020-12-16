@@ -2,11 +2,16 @@
 <html>
 <head>
     <title>Tin tức</title>
-    <link rel='stylesheet' href='/src/public/stylesheets/news.css'/>
 </head>
 <body>
 
-<h1>News</h1>
-<span>tin tuc tin tuc</span>
+<div>
+    <h1>News</h1>
+
+    <% data.forEach(function(news){ %>
+        <li><%= news.title %></li>
+    <% }); %>
+</div>
+
 </body>
 </html>

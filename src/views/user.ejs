@@ -2,11 +2,20 @@
 <html>
 <head>
     <title>Tài khoản</title>
-    <link rel='stylesheet' href='./src/public/stylesheets/user.css'/>
 </head>
 <body>
 
-<h1>User</h1>
+<div>
+    <h1>User</h1>
+
+    <div style="display: flex;flex-direction: row; flex-wrap: wrap">
+        <% data.forEach(function(e){ %>
+            <img style="width: 100px; height: 100px" src=<%= e.photoURL %>>
+            <li><%= e.displayName %></li>
+        <% }); %>
+    </div>
+</div>
+
 
 </body>
 </html>
