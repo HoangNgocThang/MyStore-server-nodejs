@@ -1,10 +1,11 @@
-var express = require('express');
-var createError = require('http-errors');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const express = require('express');
+const createError = require('http-errors');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 const productRouter = require('./products');
 const categoryRouter = require('./category');
 const cartRouter = require('./cart');
+const loginRouter = require('./login');
 
 function route(app) {
 
@@ -16,6 +17,7 @@ function route(app) {
     app.use('/products', productRouter);
     app.use('/category', categoryRouter);
     app.use('/cart', cartRouter);
+    app.use('/api/login',loginRouter);
 
     app.use(logger('dev'));
     app.use(express.json());

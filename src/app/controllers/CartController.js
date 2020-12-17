@@ -1,17 +1,27 @@
+const Cart = require('../../app/models/Cart');
+
 class CartController {
+
+    addItemToCart(req, res) {
+        console.log("Param:", req.body);
+        Cart.addItemToCart(req.body, (r) => {
+            res.json(r)
+        });
+    }
+
     showCart(req, res) {
         res.send("show cart");
     }
 
-    removeItemInCart(req, res) {
+    removeItemToCart(req, res) {
         res.send('removeItemInCart');
     }
 
-    increaseItemInCart(req, res) {
+    increaseItemToCart(req, res) {
         res.send('increaseItemInCart');
     }
 
-    decreaseItemInCart(req, res) {
+    decreaseItemToCart(req, res) {
         res.send('decreaseItemInCart');
     }
 }

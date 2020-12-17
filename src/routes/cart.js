@@ -1,10 +1,18 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 const cartController = require('../app/controllers/CartController');
+const bodyParser = require('body-parser');
 
-router.use('/show', cartController.showCart);
-router.use('/item/remove', cartController.removeItemInCart);
-router.use('/item/increase', cartController.increaseItemInCart);
-router.use('/item/decrease', cartController.decreaseItemInCart);
+// create application/json parser
+const jsonParser = bodyParser.json();
+
+// create application/x-www-form-urlencoded parser
+const urlencodedParser = bodyParser.urlencoded({ extended: false });
+
+router.post('/item/add',jsonParser,cartController.addItemToCart);
+router.post('/show', jsonParser,cartController.showCart);
+router.post('/item/remove',jsonParser, cartController.removeItemToCart);
+router.post('/item/increase',jsonParser, cartController.increaseItemToCart);
+router.post('/item/decrease',jsonParser, cartController.decreaseItemToCart);
 
 module.exports = router;
