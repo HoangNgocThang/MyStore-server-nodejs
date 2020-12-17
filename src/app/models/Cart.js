@@ -8,8 +8,9 @@ class Cart {
                 callback("Thêm thất bại: " + er);
                 return;
             }
+
             const resultArray = JSON.parse(JSON.stringify(r));
-            if (resultArray.some((e) => e.id == item.id)) {
+            if (resultArray.some((e) => e.id_product == item.id)) {
                 console.log('vao day');
                 callback("Thêm thành công (k tạo bản ghi)");
                 return;

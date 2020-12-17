@@ -5,7 +5,8 @@ class CartController {
     addItemToCart(req, res) {
         console.log("Param:", req.body);
         Cart.addItemToCart(req.body, (r) => {
-            res.json(r)
+            console.log(r);
+            res.json(r);
         });
     }
 
