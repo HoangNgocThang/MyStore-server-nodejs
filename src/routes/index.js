@@ -6,6 +6,7 @@ const productRouter = require('./products');
 const categoryRouter = require('./category');
 const cartRouter = require('./cart');
 const loginRouter = require('./login');
+const registerRouter = require('./register');
 
 function route(app) {
 
@@ -17,7 +18,8 @@ function route(app) {
     app.use('/products', productRouter);
     app.use('/category', categoryRouter);
     app.use('/cart', cartRouter);
-    app.use('/api/login',loginRouter);
+    app.use('/api/login', loginRouter);
+    app.use('/api/register', registerRouter);
 
     app.use(logger('dev'));
     app.use(express.json());
