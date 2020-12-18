@@ -1,9 +1,12 @@
-const Register = require('../../app/models/Register');
+const register = require('../../app/models/Register');
 
 class RegisterController {
     addNewUser(req, res) {
-
-        res.send('addNewUser');
+        console.log(req.body);
+        register.addNewUser(req.body,(r)=> {
+            console.log(r);
+            res.json(r);
+        });
     }
 }
 
