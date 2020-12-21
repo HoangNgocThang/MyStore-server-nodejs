@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const Database = require('../../app/db/dbmysql');
 const bcrypt = require('bcrypt');
+const Constant = require('../../../src/constant/index');
 
 class Login {
 
@@ -43,7 +44,7 @@ class Login {
 
             if (bcrypt.compareSync(params.password, resultArray[0].password)) {
                 console.log('pass dung');
-                const token = jwt.sign({username: params.username}, 'mk');
+                const token = jwt.sign({username: params.username}, Constant.SIGNATURE_KEY);
                 callback({
                     status: 200,
                     access_token: token,

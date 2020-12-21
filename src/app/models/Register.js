@@ -32,14 +32,20 @@ class Register {
         Database.connection.query(`select * from user where phone = ? OR username = ?`,
             [params.phone, params.username], (er, rw) => {
                 if (er) {
-                    callback('loi');
+                    callback({
+                        status: 400,
+                        message: 'lỗi'
+                    });
                     return;
                 }
 
                 const resultArray = JSON.parse(JSON.stringify(rw));
                 if (resultArray && resultArray.length > 0) {
                     console.log('vao day');
-                    callback("Tài khoản này đã tồn tại vui lòng lựa chọn username hoặc phone khác");
+                    callback({
+                        status: 400,
+                        message: "Tài khoản này đã tồn tại vui lòng lựa chọn username hoặc phone khác"
+                    });
                     return;
                 }
 
@@ -54,7 +60,10 @@ class Register {
                             return;
                         }
                         console.log(rows);
-                        callback('Đăng kí thành công !!!');
+                        callback({
+                            status: 200,
+                            message: 'Đăng kí thành công !!!'
+                        });
                     })
 
             });
