@@ -8,7 +8,7 @@ class Category {
                     console.log(err);
                     return;
                 }
-                resolve(rows)
+                resolve(rows);
             })
         });
     }
