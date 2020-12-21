@@ -9,18 +9,27 @@ const jsonParser = bodyParser.json();
 // create application/x-www-form-urlencoded parser
 const urlencodedParser = bodyParser.urlencoded({extended: false});
 
-// function eToken(req, res, next) {
-//     const bHeader = req.header["authorization"];
-//     if (typeof bHeader !== 'undefined') {
-//         const bearer = bHeader.split(" ");
-//         const bearerToken = bearer[1];
-//         console.log('vao dayyyyyy')
-//         req.token = bearerToken;
-//         next();
-//     } else {
-//         res.sendStatus(403);
-//     }
-// }
+function verifyToken(req, res, next) {
+    console.log("vao verifyToken")
+    // Get auth header value
+    const bearerHeader = req.headers['authorization'];
+    // Check if bearer is undefined
+    if (typeof bearerHeader !== 'undefined') {
+        // Split at the space
+        const bearer = bearerHeader.split(' ');
+        // Get token from array
+        const bearerToken = bearer[1];
+        // Set the token
+        req.token = bearerToken;
+        // Next middleware
+        console.log("vao verifyToken2:", req.token)
 
-router.post('/index', jsonParser, testController.methodTest)
+        next();
+    } else {
+        // Forbidden
+        res.sendStatus(403);
+    }
+}
+
+router.post('/index', jsonParser, verifyToken, testController.methodTest);
 module.exports = router;
