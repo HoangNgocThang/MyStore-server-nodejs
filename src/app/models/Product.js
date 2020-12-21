@@ -17,10 +17,11 @@ class Product {
     getProductsBySlug(slug) {
         console.log("cc:", slug);
         return new Promise((resolve) => {
-            Database.connection.query(`select p.* from PRODUCT as p inner join CATEGORY as c on c.id = p.id_category Where slug='${slug}' `, (err, rows) => {
-                console.log(rows);
-                resolve(rows)
-            })
+            Database.connection.query(`select p.* from PRODUCT as p inner join CATEGORY as c on c.id = p.id_category Where slug= ?`,
+                [slug], (err, rows) => {
+                    console.log(rows);
+                    resolve(rows)
+                })
 
             // Database.connection.query(`select id from CATEGORY where CATEGORY.slug = '${slug}' `, (err, rows) => {
             //     if (err) {
