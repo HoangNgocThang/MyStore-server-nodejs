@@ -12,8 +12,8 @@ const urlencodedParser = bodyParser.urlencoded({extended: false});
 
 router.post('/show', jsonParser, hepler.verifyToken, cartController.showCart);
 router.post('/item/add', jsonParser, hepler.verifyToken, cartController.addItemToCart);
-router.post('/item/remove', jsonParser, hepler.verifyToken, cartController.removeItemToCart);
 router.post('/item/increase', jsonParser, hepler.verifyToken, cartController.increaseItemToCart);
 router.post('/item/decrease', jsonParser, hepler.verifyToken, cartController.decreaseItemToCart);
+router.post('/item/remove', jsonParser, hepler.verifyToken, cartController.removeItemToCart);
 
 module.exports = router;

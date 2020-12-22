@@ -66,34 +66,97 @@ class Cart {
                 return;
             }
             console.log("RES:", decoded);
-            Database.connection.query('Select * from Cart as c INNER JOIN Product as p ON c.id_product = p.id where id_user = ?', [decoded.id], (e, r) => {
-                if (e) {
+            Database.connection.query('Select * from Cart as c INNER JOIN Product as p ON c.id_product = p.id where id_user = ?',
+                [decoded.id], (e, r) => {
+                    if (e) {
+                        callback({
+                            status: 400,
+                            message: e
+                        });
+                        return;
+                    }
+                    const resultArray = JSON.parse(JSON.stringify(r));
+                    console.log('resultArray:', resultArray);
                     callback({
-                        status: 400,
-                        message: e
-                    });
-                    return;
-                }
-                const resultArray = JSON.parse(JSON.stringify(r));
-                console.log('resultArray:', resultArray);
-                callback({
-                    status: 200,
-                    data: resultArray,
-                    message: 'thành công'
-                })
-            });
+                        status: 200,
+                        data: resultArray,
+                        message: 'thành công'
+                    })
+                });
         })
+    }
 
+    increaseItemToCart(token, item, callback) {
+        console.log("token increaseItemToCart;", token, item)
+        jwt.verify(token, Constant.SIGNATURE_KEY, function (err, decoded) {
+            if (err) {
+                callback({
+                    status: 400,
+                    message: err
+                });
+                return;
+            }
+            console.log(decoded)
+            Database.connection.query('UPDATE  Cart as c SET quantity = ?  where c.id_user= ? And c.id_product = ? ',
+                [item.quantity + 1, decoded.id, item.id_product], (e, r) => {
+                    if (e) {
+                        callback({
+                            status: 400,
+                            message: e
+                        });
+                        return;
+                    }
+                    const resultArray = JSON.parse(JSON.stringify(r));
+                    console.log('resultArray:', resultArray);
+                    callback({
+                        status: 200,
+                        data: resultArray,
+                        message: 'thành công'
+                    })
+                });
+        })
+    }
 
+    decreaseItemToCart(token, item, callback) {
+        console.log("token increaseItemToCart;", token, item)
+        jwt.verify(token, Constant.SIGNATURE_KEY, function (err, decoded) {
+            if (err) {
+                callback({
+                    status: 400,
+                    message: err
+                });
+                return;
+            }
+            console.log(decoded)
+            var reMinus = item.quantity - 1;
+            if (reMinus <= 0) {
+                callback({
+                    status: 400,
+                    message: 'Số lương không bé hơn bằng 0'
+                });
+                return;
+            }
+            Database.connection.query('UPDATE  Cart as c SET quantity = ?  where c.id_user= ? And c.id_product = ? ',
+                [reMinus, decoded.id, item.id_product], (e, r) => {
+                    if (e) {
+                        callback({
+                            status: 400,
+                            message: e
+                        });
+                        return;
+                    }
+                    const resultArray = JSON.parse(JSON.stringify(r));
+                    console.log('resultArray:', resultArray);
+                    callback({
+                        status: 200,
+                        data: resultArray,
+                        message: 'thành công'
+                    })
+                });
+        })
     }
 
     removeItemToCart() {
-    }
-
-    increaseItemToCart() {
-    }
-
-    decreaseItemToCart() {
     }
 }
 

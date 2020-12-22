@@ -19,16 +19,21 @@ class CartController {
         });
     }
 
-    removeItemToCart(req, res) {
-        res.send('removeItemInCart');
-    }
-
     increaseItemToCart(req, res) {
-        res.send('increaseItemInCart');
+        console.log("vao day22:", req.token);
+        Cart.increaseItemToCart(req.token, req.body, (r) => {
+            res.json(r);
+        })
     }
 
     decreaseItemToCart(req, res) {
-        res.send('decreaseItemInCart');
+        Cart.decreaseItemToCart(req.token, req.body, (r) => {
+            res.json(r);
+        })
+    }
+
+    removeItemToCart(req, res) {
+        res.send('removeItemInCart');
     }
 }
 
