@@ -4,10 +4,8 @@ const Constant = require('../../../src/constant/index');
 
 class Cart {
     addItemToCart(item, token, callback) {
-
         jwt.verify(token, Constant.SIGNATURE_KEY, function (err, decoded) {
             if (err) {
-                console.log("err:", err);
                 res.json({
                     status: 400,
                     message: err
@@ -36,7 +34,6 @@ class Cart {
                         return;
                     }
 
-                    console.log('item day len tu client:', item);
                     Database.connection.query(`INSERT INTO Cart (id_product, id_user, quantity) VALUES (?, ?, ?)`,
                         [item.id, decoded.id, 1], (err, rows) => {
                             if (err) {
@@ -52,16 +49,42 @@ class Cart {
                                 status: 200,
                                 message: "Thêm thành công (tạo bản ghi)"
                             });
-                        })
+                        });
                 });
             }
         });
     }
 
-    showCart() {
-        Database.connection.query('Select * from Cart', (er, r) => {
+    showCart(token, callback) {
+        console.log("OOO;", token)
+        jwt.verify(token, Constant.SIGNATURE_KEY, function (err, decoded) {
+            if (err) {
+                callback({
+                    status: 400,
+                    message: err
+                });
+                return;
+            }
+            console.log("RES:", decoded);
+            Database.connection.query('Select * from Cart as c INNER JOIN Product as p ON c.id_product = p.id where id_user = ?', [decoded.id], (e, r) => {
+                if (e) {
+                    callback({
+                        status: 400,
+                        message: e
+                    });
+                    return;
+                }
+                const resultArray = JSON.parse(JSON.stringify(r));
+                console.log('resultArray:', resultArray);
+                callback({
+                    status: 200,
+                    data: resultArray,
+                    message: 'thành công'
+                })
+            });
+        })
 
-        });
+
     }
 
     removeItemToCart() {

@@ -11,8 +11,12 @@ class CartController {
         });
     }
 
-    showCart(req, res) {
-        res.send("show cart");
+    showCart = (req, res) => {
+        console.log("vao day11:", req.token)
+        Cart.showCart(req.token, (r) => {
+            console.log('rrr', r);
+            res.json(r);
+        });
     }
 
     removeItemToCart(req, res) {
