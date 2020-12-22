@@ -44,12 +44,18 @@ class Login {
 
             if (bcrypt.compareSync(params.password, resultArray[0].password)) {
                 console.log('pass dung');
-                const token = jwt.sign({username: params.username}, Constant.SIGNATURE_KEY);
+
+                const token = jwt.sign({
+                    id: resultArray[0].id,
+                    username: params.username
+                }, Constant.SIGNATURE_KEY);
+
                 callback({
                     status: 200,
                     access_token: token,
                     username: params.username
                 })
+
             } else {
                 console.log('pass sai');
                 callback({err: 'tên tài khoản hoặc mật khẩu k đúng'})
