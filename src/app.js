@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const cors = require('cors');
+const cors = require('cors'); // lib này cho vào để chạy đc localhost
 
 const dbStore = require('./app/db/dbmysql');
 const rootRouter = require('./routes');

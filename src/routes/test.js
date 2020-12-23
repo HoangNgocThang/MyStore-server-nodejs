@@ -10,6 +10,5 @@ const jsonParser = bodyParser.json();
 // create application/x-www-form-urlencoded parser
 const urlencodedParser = bodyParser.urlencoded({extended: false});
 
-
 router.post('/index', jsonParser, hepler.verifyToken, testController.methodTest);
 module.exports = router;
