@@ -156,7 +156,30 @@ class Cart {
         })
     }
 
-    removeItemToCart() {
+    removeItemToCart(token, item, callback) {
+        jwt.verify(token, Constant.SIGNATURE_KEY, function (err, decoded) {
+            if (err) {
+                callback({
+                    status: 400,
+                    message: err
+                });
+                return;
+            }
+            Database.connection.query(' DELETE FROM cart where id_user = ? And id_product = ? ',
+                [decoded.id, item.id_product], (e, r) => {
+                    if (e) {
+                        callback({
+                            status: 400,
+                            message: err
+                        })
+                        return;
+                    }
+                    callback({
+                        status: 200,
+                        message: 'thành công'
+                    })
+                });
+        });
     }
 }
 

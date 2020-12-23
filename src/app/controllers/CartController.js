@@ -33,7 +33,9 @@ class CartController {
     }
 
     removeItemToCart(req, res) {
-        res.send('removeItemInCart');
+        Cart.removeItemToCart(req.token, req.body, (r) => {
+            res.json(r);
+        })
     }
 }
 
