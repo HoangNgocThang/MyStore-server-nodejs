@@ -37,6 +37,12 @@ class CartController {
             res.json(r);
         })
     }
+
+    getTotalItemInCart(req, res) {
+        Cart.getTotalItemInCart(req.token, (r) => {
+            res.json(r);
+        })
+    }
 }
 
 module.exports = new CartController();

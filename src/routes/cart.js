@@ -15,5 +15,6 @@ router.post('/item/add', jsonParser, hepler.verifyToken, cartController.addItemT
 router.post('/item/increase', jsonParser, hepler.verifyToken, cartController.increaseItemToCart);
 router.post('/item/decrease', jsonParser, hepler.verifyToken, cartController.decreaseItemToCart);
 router.post('/item/remove', jsonParser, hepler.verifyToken, cartController.removeItemToCart);
+router.get('/item/total', jsonParser, hepler.verifyToken, cartController.getTotalItemInCart)
 
 module.exports = router;

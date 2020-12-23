@@ -181,6 +181,34 @@ class Cart {
                 });
         });
     }
+
+    getTotalItemInCart(token, callback) {
+        jwt.verify(token, Constant.SIGNATURE_KEY, function (err, decoded) {
+            if (err) {
+                callback({
+                    status: 400,
+                    message: err
+                });
+                return;
+            }
+            Database.connection.query('Select * from cart where id_user = ? ',
+                [decoded.id], (e, r) => {
+                    if (e) {
+                        callback({
+                            status: 400,
+                            message: err
+                        })
+                        return;
+                    }
+                    const resultArray = JSON.parse(JSON.stringify(r));
+                    callback({
+                        status: 200,
+                        message: 'thành công',
+                        total: resultArray.length
+                    })
+                })
+        });
+    }
 }
 
 module.exports = new Cart();
