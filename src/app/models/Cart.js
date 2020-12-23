@@ -6,7 +6,7 @@ class Cart {
     addItemToCart(item, token, callback) {
         jwt.verify(token, Constant.SIGNATURE_KEY, function (err, decoded) {
             if (err) {
-                res.json({
+                callback({
                     status: 400,
                     message: err
                 });
