@@ -3,6 +3,7 @@ const Order = require('../../app/models/Order');
 class OrderController {
 
     createOrder(req, res) {
+        console.log(req.body, req.token);
         // res.send("createOrder");
         Order.createOrder(req.body, req.token, (r) => {
             console.log(r);

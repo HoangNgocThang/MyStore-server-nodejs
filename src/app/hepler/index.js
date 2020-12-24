@@ -11,14 +11,14 @@ function verifyToken(req, res, next) {
         // Set the token
         req.token = bearerToken;
         // Next middleware
-        console.log("vao verifyToken2:", req.token)
-
+        console.log("Lấy token từ header ok:", req.token);
         next();
     } else {
         // Forbidden
+        console.log("Lỗi lấy token từ header:", req.token);
         res.json({
             status: 403,
-            message: "k xác thực token"
+            message: "Không xác thực token"
         });
     }
 }
