@@ -34,12 +34,18 @@ class Order {
                         return;
                     }
                     console.log("RESSSS:", r);
+
+                    const result = JSON.parse(JSON.stringify(r));
+
+                    console.log("id_order:", result.insertId)
+
                     callback({
                         status: 200,
                         message: 'Tạo hóa đơn thành công'
                     })
-                    Database.connection.query('Delete from cart where id_user = ?',
-                        [decoded.id], (er, re) => {
+
+                    Database.connection.query('UPDATE cart SET id_order = ? where id_user = ?',
+                        [result.insertId, decoded.id], (er, re) => {
                             if (er) {
                                 callback({
                                     status: 400,
@@ -47,8 +53,8 @@ class Order {
                                 });
                                 return;
                             }
-                            console.log("Xóa các sản phẩm trong giỏ hàng đi khi user đó đặt hàng thành công", re);
-                        });
+                            console.log("Đánh dấu sản phẩm đã thành đơn trong giỏ hàng", re);
+                        })
                 });
         });
     }

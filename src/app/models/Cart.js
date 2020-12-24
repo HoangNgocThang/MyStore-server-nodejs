@@ -66,7 +66,7 @@ class Cart {
                 return;
             }
             console.log("RES:", decoded);
-            Database.connection.query('Select * from Cart as c INNER JOIN Product as p ON c.id_product = p.id where id_user = ?',
+            Database.connection.query('Select * from Cart as c INNER JOIN Product as p ON c.id_product = p.id where id_user = ? and id_order IS null ',
                 [decoded.id], (e, r) => {
                     if (e) {
                         callback({
@@ -191,7 +191,7 @@ class Cart {
                 });
                 return;
             }
-            Database.connection.query('Select * from cart where id_user = ? ',
+            Database.connection.query('Select * from cart where id_user = ? and id_order Is null ',
                 [decoded.id], (e, r) => {
                     if (e) {
                         callback({
