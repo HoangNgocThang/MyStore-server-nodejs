@@ -6,7 +6,6 @@ const moment = require('moment');
 class Order {
 
     createOrder(param, token, callback) {
-        console.log("param:", param);
         jwt.verify(token, Constant.SIGNATURE_KEY, function (err, decoded) {
             if (err) {
                 callback({
@@ -15,14 +14,10 @@ class Order {
                 });
                 return;
             }
-
-            var amount = 0;
+            let amount = 0;
             param.data.forEach((e, i) => {
                 amount = amount + e.quantity * e.price
             });
-            console.log("amount:", amount);
-
-            console.log("DAAATE:", moment(param.datetime).add(12, 'month').format('DD/MM/YYYY'))
             Database.connection.query('INSERT INTO bill (date, id_user, date_bh, amount, amount_origin ) VALUES (?, ?, ?, ?, ?)',
                 [
                     moment(param.datetime).add(12, 'month').format('DD/MM/YYYY HH:mm:ss'),
@@ -43,7 +38,6 @@ class Order {
                         status: 200,
                         message: 'Tạo hóa đơn thành công'
                     })
-
                     Database.connection.query('Delete from cart where id_user = ?',
                         [decoded.id], (er, re) => {
                             if (er) {
@@ -59,8 +53,31 @@ class Order {
         });
     }
 
-    getListOrder() {
-
+    getListOrder(param, token, callback) {
+        jwt.verify(token, Constant.SIGNATURE_KEY, function (err, decoded) {
+            if (err) {
+                callback({
+                    status: 400,
+                    message: err
+                });
+                return;
+            }
+            Database.connection.query('Select * from bill where id_user = ?',
+                [decoded.id], (e, r) => {
+                    if (e) {
+                        callback({
+                            status: 400,
+                            message: r
+                        });
+                        return;
+                    }
+                    const resultArray = JSON.parse(JSON.stringify(r));
+                    callback({
+                        status: 200,
+                        data: resultArray
+                    })
+                });
+        });
     }
 }
 

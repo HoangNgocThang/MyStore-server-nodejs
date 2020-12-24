@@ -4,7 +4,6 @@ class OrderController {
 
     createOrder(req, res) {
         console.log(req.body, req.token);
-        // res.send("createOrder");
         Order.createOrder(req.body, req.token, (r) => {
             console.log(r);
             res.json(r);
@@ -12,7 +11,11 @@ class OrderController {
     }
 
     getListOrder(req, res) {
-        res.send("getListOrder");
+        console.log(req.body, res.token);
+        Order.getListOrder(req.body, req.token, (r) => {
+            console.log(r);
+            res.json(r);
+        });
     }
 }
 
