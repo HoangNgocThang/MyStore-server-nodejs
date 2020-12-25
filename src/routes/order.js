@@ -12,5 +12,6 @@ const urlencodedParser = bodyParser.urlencoded({extended: false});
 
 router.post('/create', jsonParser, hepler.verifyToken, orderController.createOrder);
 router.get('/show', jsonParser, hepler.verifyToken, orderController.getListOrder);
+router.get('/total-order', jsonParser, hepler.verifyToken, orderController.getTotalOrder);
 
 module.exports = router;

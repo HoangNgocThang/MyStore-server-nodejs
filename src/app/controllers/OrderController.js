@@ -11,9 +11,13 @@ class OrderController {
     }
 
     getListOrder(req, res) {
-        console.log(req.body, res.token);
         Order.getListOrder(req.body, req.token, (r) => {
-            console.log(r);
+            res.json(r);
+        });
+    }
+
+    getTotalOrder(req, res) {
+        Order.getTotalOrder(req.token, (r) => {
             res.json(r);
         });
     }

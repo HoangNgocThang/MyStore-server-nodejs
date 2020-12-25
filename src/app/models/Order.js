@@ -44,7 +44,7 @@ class Order {
                         message: 'Tạo hóa đơn thành công'
                     })
 
-                    Database.connection.query('UPDATE cart SET id_order = ? where id_user = ?',
+                    Database.connection.query('UPDATE cart SET id_order = ? where id_user = ? and id_order is null ',
                         [result.insertId, decoded.id], (er, re) => {
                             if (er) {
                                 callback({
@@ -68,6 +68,51 @@ class Order {
                 });
                 return;
             }
+            Database.connection.query('select * from cart as c INNER JOIN product as p ON c.id_product= p.id  where id_user = ? and id_order Is NOT null',
+                [decoded.id], (er, re) => {
+                    if (er) {
+                        callback({
+                            status: 400,
+                            message: er
+                        });
+                        return;
+                    }
+                    const resultArrayCart = JSON.parse(JSON.stringify(re));
+                    console.log('resultArrayCart:', resultArrayCart);
+
+                    Database.connection.query('Select * from bill where id_user = ? ',
+                        [decoded.id], (e, r) => {
+                            if (e) {
+                                callback({
+                                    status: 400,
+                                    message: r
+                                });
+                                return;
+                            }
+                            const resultArray = JSON.parse(JSON.stringify(r));
+                            console.log('resultArray:', resultArray);
+
+                            callback({
+                                status: 200,
+                                data: resultArray.map(ele => {
+                                    return {...ele, items: resultArrayCart}
+                                })
+                            });
+                        });
+                });
+
+        });
+    }
+
+    getTotalOrder(token, callback) {
+        jwt.verify(token, Constant.SIGNATURE_KEY, function (err, decoded) {
+            if (err) {
+                callback({
+                    status: 400,
+                    message: err
+                });
+                return;
+            }
             Database.connection.query('Select * from bill where id_user = ?',
                 [decoded.id], (e, r) => {
                     if (e) {
@@ -77,11 +122,15 @@ class Order {
                         });
                         return;
                     }
-                    const resultArray = JSON.parse(JSON.stringify(r));
+                    const resultArrayBill = JSON.parse(JSON.stringify(r));
+                    console.log('resultArrayCart:', resultArrayBill);
+
                     callback({
                         status: 200,
-                        data: resultArray
-                    })
+                        message: resultArrayBill,
+                        total: resultArrayBill.length
+                    });
+
                 });
         });
     }
