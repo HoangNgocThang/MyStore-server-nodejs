@@ -53,8 +53,8 @@ class Register {
                 const passwordHash = bcrypt.hashSync(params.password, salt);
                 console.log(passwordHash);
 
-                Database.connection.query(`INSERT INTO user (name, phone, address, username ,password) VALUES (?, ?, ?, ?, ?);`,
-                    [params.name, params.phone, params.address, params.username, passwordHash], (err, rows) => {
+                Database.connection.query(`INSERT INTO user (name, phone, address, username ,password, avatar, type) VALUES (?, ?, ?, ?, ?, ?, ?);`,
+                    [params.name, params.phone, params.address, params.username, passwordHash, null, null], (err, rows) => {
                         if (err) {
                             callback("lỗi: " + err);
                             return;
