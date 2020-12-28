@@ -9,6 +9,7 @@ const loginRouter = require('./login');
 const registerRouter = require('./register');
 const testRouter = require('./test');
 const orderRouter = require('./order');
+const userRouter = require('./user');
 
 function route(app) {
 
@@ -21,6 +22,7 @@ function route(app) {
     app.use('/category', categoryRouter);
     app.use('/cart', cartRouter);
     app.use('/order', orderRouter);
+    app.use('/user', userRouter)
     app.use('/api/login', loginRouter);
     app.use('/api/register', registerRouter);
     app.use('/api/test', testRouter);
