@@ -6,6 +6,13 @@ const moment = require('moment');
 class Order {
 
     createOrder(param, token, callback) {
+        if (param && param.data.length === 0) {
+            callback({
+                status: 400,
+                message: 'Bạn cần có sản phẩm trong giỏ hàng'
+            });
+            return;
+        }
         jwt.verify(token, Constant.SIGNATURE_KEY, function (err, decoded) {
             if (err) {
                 callback({
