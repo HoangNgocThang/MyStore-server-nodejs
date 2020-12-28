@@ -11,5 +11,6 @@ const jsonParser = bodyParser.json();
 const urlencodedParser = bodyParser.urlencoded({extended: false});
 
 router.get('/show', jsonParser, hepler.verifyToken, userController.showUser);
+router.post('/upload', urlencodedParser, hepler.verifyToken, userController.uploadProfile);
 
 module.exports = router;

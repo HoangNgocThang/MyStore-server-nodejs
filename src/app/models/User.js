@@ -1,6 +1,7 @@
 const Database = require('../../app/db/dbmysql');
 const jwt = require('jsonwebtoken');
 const Constant = require('../../../src/constant/index');
+const hepler = require('../../app/hepler');
 
 class User {
     showUser(token, callback) {
@@ -28,6 +29,29 @@ class User {
                         data: result[0]
                     })
                 });
+        });
+    }
+
+
+    uploadProfile(param, token, callback) {
+
+        jwt.verify(token, Constant.SIGNATURE_KEY, function (err, decoded) {
+            if (err) {
+                callback({
+                    status: 400,
+                    message: err
+                });
+                return;
+            }
+
+            console.log(decoded);
+            console.log('param:', param);
+
+            callback({
+                status: 200,
+                data: param
+            });
+
         });
     }
 }
