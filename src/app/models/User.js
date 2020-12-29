@@ -1,7 +1,7 @@
 const Database = require('../../app/db/dbmysql');
 const jwt = require('jsonwebtoken');
 const Constant = require('../../../src/constant/index');
-const hepler = require('../../app/hepler');
+const fs = require('fs');
 
 class User {
     showUser(token, callback) {
@@ -33,7 +33,7 @@ class User {
     }
 
 
-    uploadProfile(param, token, callback) {
+    uploadProfile(param, token, req, res, callback) {
 
         jwt.verify(token, Constant.SIGNATURE_KEY, function (err, decoded) {
             if (err) {
@@ -43,15 +43,24 @@ class User {
                 });
                 return;
             }
-
             console.log(decoded);
-            console.log('param:', param);
+            console.log('param:', param.avatar);
 
-            callback({
-                status: 200,
-                data: param
+            fs.writeFile("public/upload", param.avatar.buffer, function (err) {
+                if (err) {
+                    console.log("loi:", err);
+                    callback({
+                        status: 400,
+                        message: err
+                    });
+                    return;
+                }
+                callback({
+                    status: 200,
+                    data: param
+                });
+                console.log("The file was saved!");
             });
-
         });
     }
 }

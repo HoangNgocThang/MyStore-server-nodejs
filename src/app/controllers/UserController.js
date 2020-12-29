@@ -1,7 +1,9 @@
 const user = require('../models/User');
 const hepler = require('../hepler');
+const multer = require('multer');
 
 class UserController {
+
     showUser(req, res) {
         user.showUser(req.token, (r) => {
             res.json(r);
@@ -21,21 +23,21 @@ class UserController {
                     message: "An unknown error occurred when uploading." + err
                 });
             } else {
-                console.log("DATA DAY LEN:", req.body)
+                console.log("DATA DAY LEN:", req.body);
                 const param = {
                     name: req.body.name,
                     phone: req.body.phone,
                     address: req.body.address,
                     avatar: req.file
                 }
-                user.uploadProfile(param, req.token, (r) => {
+                user.uploadProfile(param, req.token, req, res,(r) => {
                     console.log(r);
                     res.json(r);
                 });
             }
         });
-
     }
+
 }
 
 module.exports = new UserController();
