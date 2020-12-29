@@ -32,34 +32,35 @@ class User {
         });
     }
 
-
+    //model
     uploadProfile(param, token, req, res, callback) {
-
+        console.log('param:', param);
         jwt.verify(token, Constant.SIGNATURE_KEY, function (err, decoded) {
             if (err) {
-                callback({
-                    status: 400,
-                    message: err
-                });
+                callback({status: 400, message: err});
                 return;
             }
-            console.log(decoded);
-            console.log('param:', param.avatar);
-
-            fs.writeFile("public/upload", param.avatar.buffer, function (err) {
+            const path =  `/upload/${Date.now()}-${param.avatar.originalname}`
+            fs.writeFile('public'+path, param.avatar.buffer, function (err) {
                 if (err) {
-                    console.log("loi:", err);
-                    callback({
-                        status: 400,
-                        message: err
-                    });
+                    callback({status: 400, message: err});
                     return;
                 }
-                callback({
-                    status: 200,
-                    data: param
-                });
                 console.log("The file was saved!");
+                Database.connection.query('UPDATE user SET name = ?, address = ?, avatar = ? where id = ?',
+                    [
+                        param.name,
+                        param.address,
+                        path,
+                        decoded.id
+                    ], (e, r) => {
+                        if (e) {
+                            callback({status: 400, message: e});
+                            return;
+                        }
+                        callback({status: 200, data: param, message: 'Lưu thành công'});
+                    }
+                );
             });
         });
     }
