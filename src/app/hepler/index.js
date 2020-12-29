@@ -36,13 +36,13 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({
-    storage: storage,
+    // storage: storage,
     fileFilter: function (req, file, cb) {
         console.log(file);
-        if (file.mimetype == "image/bmp" || file.mimetype == "image/png") {
-            cb(null, true)
+        if (file.mimetype === "image/bmp" || file.mimetype === "image/png") {
+            cb(null, true);
         } else {
-            return cb(new Error('Only image are allowed!'))
+            return cb('Only image are allowed!');
         }
     }
 }).single("avatar");
