@@ -28,7 +28,8 @@ class UserController {
                     name: req.body.name,
                     phone: req.body.phone,
                     address: req.body.address,
-                    avatar: req.file
+                    avatar: req.file,
+                    avatarShow: req.avatarShow
                 }
                 user.uploadProfile(param, req.token, req, res,(r) => {
                     console.log(r);

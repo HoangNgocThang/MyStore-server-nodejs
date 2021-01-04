@@ -2,7 +2,7 @@ const Database = require('../../app/db/dbmysql');
 const jwt = require('jsonwebtoken');
 const Constant = require('../../../src/constant/index');
 const fs = require('fs');
-const {uuid} = require('uuidv4');
+const {v4: uuid_v4} = require('uuid');
 
 class User {
     showUser(token, callback) {
@@ -56,21 +56,47 @@ class User {
                 return;
             }
 
-            if (param.avatar == null) {
-                console.log("aaaa", uuid());
+            if (param.avatar == null && param.avatarShow != '') {
+                Database.connection.query('Select avatar from user where id =?',
+                    [decoded.id], (e, r) => {
+
+                        if (e) {
+                            callback({status: 400, message: e});
+                            return;
+                        }
+                        const result = JSON.parse(JSON.stringify(r));
+                        Database.connection.query('UPDATE user SET name = ?, address = ? where id = ?',
+                            [
+                                param.name,
+                                param.address,
+                                decoded.id
+                            ], (e2, r2) => {
+                                if (e2) {
+                                    callback({status: 400, message: e2});
+                                    return;
+                                }
+                                callback({
+                                    status: 200, data: {
+                                        ...param,
+                                        linkAvatar: result[0].avatar
+                                    }, message: 'Lưu thành công'
+                                });
+                            }
+                        );
+                    });
                 return;
             }
 
             console.log("bbb");
 
-            const path = `/upload/${Date.now()}-${uuid()}${param.avatar.mimetype.replace('image/', '.')}`;
+            const path = `/upload/${Date.now()}-${uuid_v4()}${param.avatar.mimetype.replace('image/', '.')}`;
 
             fs.writeFile('public' + path, param.avatar.buffer, function (err) {
                 if (err) {
                     callback({status: 400, message: err});
                     return;
                 }
-                console.log("The file was saved!");
+                console.log("Write File ok");
                 Database.connection.query('UPDATE user SET name = ?, address = ?, avatar = ? where id = ?',
                     [
                         param.name,
@@ -82,7 +108,12 @@ class User {
                             callback({status: 400, message: e});
                             return;
                         }
-                        callback({status: 200, data: param, message: 'Lưu thành công'});
+                        callback({
+                            status: 200, data: {
+                                ...param,
+                                linkAvatar: path
+                            }, message: 'Lưu thành công'
+                        });
                     }
                 );
             });
