@@ -2,6 +2,7 @@ const Database = require('../../app/db/dbmysql');
 const jwt = require('jsonwebtoken');
 const Constant = require('../../../src/constant/index');
 const fs = require('fs');
+const {uuid} = require('uuidv4');
 
 class User {
     showUser(token, callback) {
@@ -32,7 +33,6 @@ class User {
         });
     }
 
-    //model
     uploadProfile(param, token, req, res, callback) {
         console.log('param:', param);
         jwt.verify(token, Constant.SIGNATURE_KEY, function (err, decoded) {
@@ -40,8 +40,32 @@ class User {
                 callback({status: 400, message: err});
                 return;
             }
-            const path =  `/upload/${Date.now()}-${param.avatar.originalname}`
-            fs.writeFile('public'+path, param.avatar.buffer, function (err) {
+
+            if (param.name == null || param.name == '') {
+                callback({status: 400, message: 'name không được để trống'});
+                return;
+            }
+
+            if (param.phone == null || param.phone == '') {
+                callback({status: 400, message: 'phone không được để trống'});
+                return;
+            }
+
+            if (param.address == null || param.address == '') {
+                callback({status: 400, message: 'address không được để trống'});
+                return;
+            }
+
+            if (param.avatar == null) {
+                console.log("aaaa", uuid());
+                return;
+            }
+
+            console.log("bbb");
+
+            const path = `/upload/${Date.now()}-${uuid()}${param.avatar.mimetype.replace('image/', '.')}`;
+
+            fs.writeFile('public' + path, param.avatar.buffer, function (err) {
                 if (err) {
                     callback({status: 400, message: err});
                     return;
@@ -62,6 +86,7 @@ class User {
                     }
                 );
             });
+
         });
     }
 }
