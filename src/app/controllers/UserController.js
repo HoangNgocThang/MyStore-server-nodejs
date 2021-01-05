@@ -31,6 +31,7 @@ class UserController {
                     avatar: req.file,
                     avatarShow: req.avatarShow
                 }
+                //trả về cho tầng view
                 user.uploadProfile(param, req.token, req, res,(r) => {
                     console.log(r);
                     res.json(r);

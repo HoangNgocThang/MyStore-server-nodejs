@@ -13,6 +13,10 @@ class ProductController {
         res.json({data});
     }
 
+    getDetailProduct(req, res) {
+        res.send('ok')
+    }
+
 }
 
 module.exports = new ProductController();
