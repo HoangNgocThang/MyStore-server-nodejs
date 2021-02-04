@@ -6,13 +6,13 @@ class Product {
         return new Promise((resolve) => {
             Database.connection.query('SELECT p.id, p.name, p.price, p.discount_price, p.id_promotion, p.image, p.id_category, p.slug, c.name as name_category, c.slug as slug_category from PRODUCT as p INNER JOIN Category as c on p.id_category=c.id',
                 (err, rows) => {
-                if (err) {
-                    console.log(err);
-                    return;
-                }
-                console.log("LOL",rows)
-                resolve(rows);
-            })
+                    if (err) {
+                        console.log(err);
+                        return;
+                    }
+                    console.log("LOL", rows)
+                    resolve(rows);
+                })
         });
     }
 
@@ -27,8 +27,29 @@ class Product {
         });
     }
 
-    getDetailProduct(params){
-
+    getDetailProduct(params, callback) {
+        console.log("cc:", params);
+        if (params.idProduct == null || params.idProduct == undefined) {
+            callback({
+                status: 400,
+                message: 'Thiếu idProduct'
+            });
+        }
+        Database.connection.query(`select * from product where id= ?`, [params.idProduct], (err, rows) => {
+            if (err) {
+                callback({
+                    status: 400,
+                    message: err
+                });
+                return;
+            }
+            const resultArray = JSON.parse(JSON.stringify(rows));
+            callback({
+                status: 200,
+                data: resultArray[0]
+            })
+            console.log(resultArray)
+        })
     }
 }
 

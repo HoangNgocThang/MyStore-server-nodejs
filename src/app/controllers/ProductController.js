@@ -14,7 +14,11 @@ class ProductController {
     }
 
     getDetailProduct(req, res) {
-        res.send('ok')
+        console.log("REq11111:", req.params);
+        Product.getDetailProduct(req.params, (r) => {
+            console.log("getDetailProduct:", req, res)
+            res.json(r);
+        })
     }
 
 }
