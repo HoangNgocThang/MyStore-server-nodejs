@@ -85,7 +85,6 @@ class Order {
                         return;
                     }
                     const resultArrayCart = JSON.parse(JSON.stringify(re));
-                    console.log('resultArrayCart:', resultArrayCart);
 
                     Database.connection.query('Select * from bill where id_user = ? ',
                         [decoded.id], (e, r) => {
@@ -130,8 +129,6 @@ class Order {
                         return;
                     }
                     const resultArrayBill = JSON.parse(JSON.stringify(r));
-                    console.log('resultArrayCart:', resultArrayBill);
-
                     callback({
                         status: 200,
                         message: resultArrayBill,

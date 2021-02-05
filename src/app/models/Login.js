@@ -44,16 +44,10 @@ class Login {
 
             if (bcrypt.compareSync(params.password, resultArray[0].password)) {
                 console.log('pass dung');
-
-                // const token = jwt.sign({
-                //     id: resultArray[0].id,
-                //     username: params.username
-                // }, Constant.SIGNATURE_KEY);
-
                 jwt.sign({
                     id: resultArray[0].id,
                     username: params.username
-                }, Constant.SIGNATURE_KEY, {}, function(err, token) {
+                }, Constant.SIGNATURE_KEY, {}, function (err, token) {
                     console.log(token);
                     console.log(err);
                     callback({

@@ -10,14 +10,12 @@ class Product {
                         console.log(err);
                         return;
                     }
-                    console.log("LOL", rows)
                     resolve(rows);
                 })
         });
     }
 
     getProductsBySlug(slug) {
-        console.log("cc:", slug);
         return new Promise((resolve) => {
             Database.connection.query(`select p.id, p.name, p.price, p.discount_price, p.id_promotion, p.image, p.id_category, p.slug, c.name as name_category, c.slug as slug_category from PRODUCT as p inner join CATEGORY as c on c.id = p.id_category Where c.slug= ?`,
                 [slug], (err, rows) => {
@@ -28,7 +26,6 @@ class Product {
     }
 
     getDetailProduct(params, callback) {
-        console.log("cc:", params);
         if (params.idProduct == null || params.idProduct == undefined) {
             callback({
                 status: 400,
