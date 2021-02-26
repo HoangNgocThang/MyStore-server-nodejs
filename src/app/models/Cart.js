@@ -174,6 +174,7 @@ class Cart {
                         })
                         return;
                     }
+                    console.log("UUUUUUU:", r);
                     callback({
                         status: 200,
                         message: 'thành công'

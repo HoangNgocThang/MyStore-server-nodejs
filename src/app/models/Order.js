@@ -44,15 +44,22 @@ class Order {
 
                     const result = JSON.parse(JSON.stringify(r));
 
-                    console.log("id_order:", result.insertId)
+                    console.log("id_order:", result.insertId);
 
-                    callback({
-                        status: 200,
-                        message: 'Tạo hóa đơn thành công'
-                    })
+                    // Database.connection.query('UPDATE cart SET id_order = ? where id_user = ? and id_order is null ',
+                    //     [result.insertId, decoded.id], (er, re) => {
+                    //         if (er) {
+                    //             callback({
+                    //                 status: 400,
+                    //                 message: er
+                    //             });
+                    //             return;
+                    //         }
+                    //         console.log("Đánh dấu sản phẩm đã thành đơn trong giỏ hàng", re);
+                    //     });
 
-                    Database.connection.query('UPDATE cart SET id_order = ? where id_user = ? and id_order is null ',
-                        [result.insertId, decoded.id], (er, re) => {
+                    Database.connection.query('DELETE from cart  where id_user = ?',
+                        [decoded.id], (er, re) => {
                             if (er) {
                                 callback({
                                     status: 400,
@@ -60,8 +67,12 @@ class Order {
                                 });
                                 return;
                             }
-                            console.log("Đánh dấu sản phẩm đã thành đơn trong giỏ hàng", re);
-                        })
+                            callback({
+                                status: 200,
+                                message: 'Tạo hóa đơn thành công'
+                            })
+                            console.log("Xóa sản phẩm đã thành đơn trong giỏ hàng", re);
+                        });
                 });
         });
     }
@@ -128,13 +139,13 @@ class Order {
                         });
                         return;
                     }
+                    console.log("VVVV:", r);
                     const resultArrayBill = JSON.parse(JSON.stringify(r));
                     callback({
                         status: 200,
                         message: resultArrayBill,
                         total: resultArrayBill.length
                     });
-
                 });
         });
     }
